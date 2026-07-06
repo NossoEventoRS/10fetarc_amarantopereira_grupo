@@ -35,7 +35,6 @@
         .section-title { background: #139c01; color: white; padding: 12px 20px; border-radius: 8px; margin-top: 30px; font-size: 20px; font-weight: bold; }
         .category-box { border: 1px solid #ffd2a8; padding: 15px; border-radius: 10px; margin-top: 15px; background: #fffcf9; box-sizing: border-box; }
         
-        /* Ajuste estrutural para tabelas responsivas */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; }
         th, td { border: 1px solid #eee; padding: 10px; font-size: 14px; text-align: center; }
         th { background: #fdf2e9; color: #d35400; font-weight: 700; }
@@ -78,29 +77,30 @@
 
         /* REGRAS EXCLUSIVAS PARA CELULAR (TELAS PEQUENAS) */
         @media (max-width: 767px) {
-            /* Transforma a tabela de Dados Gerais em blocos verticais */
-            #formInscricao table, #formInscricao tbody, #formInscricao tr, #formInscricao td { 
+            /* Tabela de Dados Gerais: Apenas quebra as linhas de forma limpa, sem injetar texto */
+            .tabela-dados-gerais, .tabela-dados-gerais tbody, .tabela-dados-gerais tr, .tabela-dados-gerais td { 
                 display: block; 
                 width: 100%; 
                 box-sizing: border-box;
             }
-            #formInscricao tr { margin-bottom: 15px; border: 1px solid #ffd2a8; border-radius: 6px; background: #fff; padding: 10px; }
-            #formInscricao td { border: none; text-align: left; padding: 5px 0; }
-            #formInscricao td:nth-child(odd) { font-weight: bold; color: #d35400; padding-top: 5px; }
+            .tabela-dados-gerais tr { margin-bottom: 10px; border: none; background: transparent; padding: 0; }
+            .tabela-dados-gerais td { border: none; text-align: left; padding: 4px 0; }
+            /* Deixa os títulos originais (Entidade, Município, etc) em destaque acima dos campos */
+            .tabela-dados-gerais td:nth-child(odd) { font-weight: bold; color: #d35400; padding-top: 8px; font-size: 15px; }
             
-            /* Transforma as tabelas de Integrantes em cartões individuais */
-            .category-box table { display: block; }
-            .category-box thead { display: none; } /* Esconde o cabeçalho no celular */
-            .category-box tbody, .category-box tr, .category-box td { display: block; width: 100%; }
-            .category-box tr { border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin-bottom: 15px; background: #fff; position: relative; }
-            .category-box td { text-align: left; border: none; padding: 6px 0; display: flex; flex-direction: column; }
+            /* Tabela de Integrantes (Esta sim ganha os rótulos corretos) */
+            .tabela-integrantes { display: block; }
+            .tabela-integrantes thead { display: none; } 
+            .tabela-integrantes tbody, .tabela-integrantes tr, .tabela-integrantes td { display: block; width: 100%; }
+            .tabela-integrantes tr { border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin-bottom: 15px; background: #fff; position: relative; }
+            .tabela-integrantes td { text-align: left; border: none; padding: 6px 0; display: flex; flex-direction: column; }
             
-            /* Adiciona rótulos simulados antes dos inputs no celular */
-            .category-box td::before { font-weight: bold; color: #555; margin-bottom: 4px; font-size: 12px; }
-            .category-box td:nth-child(1)::before { content: "Nome Completo:"; }
-            .category-box td:nth-child(2)::before { content: "Nascimento:"; }
-            .category-box td:nth-child(3)::before { content: "Nº Cartão Tradicionalista:"; }
-            .category-box td:nth-child(4) { padding-top: 10px; }
+            /* Injeta os textos corretos APENAS na tabela de integrantes */
+            .tabela-integrantes td::before { font-weight: bold; color: #555; margin-bottom: 4px; font-size: 12px; }
+            .tabela-integrantes td:nth-child(1)::before { content: "Nome Completo:"; }
+            .tabela-integrantes td:nth-child(2)::before { content: "Nascimento:"; }
+            .tabela-integrantes td:nth-child(3)::before { content: "Nº Cartão Tradicionalista:"; }
+            .tabela-integrantes td:nth-child(4) { padding-top: 10px; }
             
             .regulamento-box { flex-direction: column; }
         }
@@ -124,7 +124,7 @@
     <form id="formInscricao">
         <div class="section-title">Dados Gerais da Entidade</div>
         <div class="category-box">
-            <table>
+            <table class="tabela-dados-gerais">
                 <tr>
                     <td>Entidade/CTG *</td><td><input id="entidade" required></td>
                     <td>Município *</td><td><input id="municipio" required></td>
@@ -184,7 +184,6 @@
 <script>
 const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzhe9sfjJRf6R7riwf5lVjxSKP6CsgWz6pq_ulDMBsUGVqINxxK6yfURj7vyXYN6-0Q/exec"; 
 
-// Data de encerramento
 const encerramento = new Date('2026-09-12T23:59:59-03:00').getTime();
 
 function atualizarContado() {
@@ -252,7 +251,7 @@ function toggleCategoria(nome) {
         btn.innerHTML = `+ Categoria ${nome}`;
     } else {
         abrirCategoria(nome);
-        content.style.maxHeight = "4000px"; /* Aumentado para suportar lista longa no mobile */
+        content.style.maxHeight = "4000px"; 
         btn.innerHTML = `− Fechar Categoria ${nome}`;
     }
 }
@@ -275,7 +274,7 @@ function abrirCategoria(nome) {
     const div = document.getElementById(`conteudo-${nome}`);
     div.innerHTML = `
         <div class="category-box cat-data" data-nome="${nome}">
-            <table style="margin-bottom:20px">
+            <table class="tabela-dados-gerais" style="margin-bottom:20px">
                 <tr>
                     <td>Dança tradicional 1 *</td>
                     <td><select class="d1" required>${opcoesDancas}</select></td>
@@ -296,7 +295,7 @@ function abrirCategoria(nome) {
                 <span class="contador-vagas" id="cont-${nome}">0 / ${LIMITE_INTEGRANTES}</span>
             </div>
 
-            <table>
+            <table class="tabela-integrantes">
                 <thead><tr><th>Nome Completo</th><th>Nascimento</th><th>Nº Cartão Tradicionalista</th><th style="width:40px">X</th></tr></thead>
                 <tbody id="body-${nome}"></tbody>
             </table>
