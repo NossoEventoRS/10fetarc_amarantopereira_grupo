@@ -77,7 +77,6 @@
 
         /* REGRAS EXCLUSIVAS PARA CELULAR (TELAS PEQUENAS) */
         @media (max-width: 767px) {
-            /* Tabela de Dados Gerais: Apenas quebra as linhas de forma limpa, sem injetar texto */
             .tabela-dados-gerais, .tabela-dados-gerais tbody, .tabela-dados-gerais tr, .tabela-dados-gerais td { 
                 display: block; 
                 width: 100%; 
@@ -85,17 +84,14 @@
             }
             .tabela-dados-gerais tr { margin-bottom: 10px; border: none; background: transparent; padding: 0; }
             .tabela-dados-gerais td { border: none; text-align: left; padding: 4px 0; }
-            /* Deixa os títulos originais (Entidade, Município, etc) em destaque acima dos campos */
             .tabela-dados-gerais td:nth-child(odd) { font-weight: bold; color: #d35400; padding-top: 8px; font-size: 15px; }
             
-            /* Tabela de Integrantes (Esta sim ganha os rótulos corretos) */
             .tabela-integrantes { display: block; }
             .tabela-integrantes thead { display: none; } 
             .tabela-integrantes tbody, .tabela-integrantes tr, .tabela-integrantes td { display: block; width: 100%; }
             .tabela-integrantes tr { border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin-bottom: 15px; background: #fff; position: relative; }
             .tabela-integrantes td { text-align: left; border: none; padding: 6px 0; display: flex; flex-direction: column; }
             
-            /* Injeta os textos corretos APENAS na tabela de integrantes */
             .tabela-integrantes td::before { font-weight: bold; color: #555; margin-bottom: 4px; font-size: 12px; }
             .tabela-integrantes td:nth-child(1)::before { content: "Nome Completo:"; }
             .tabela-integrantes td:nth-child(2)::before { content: "Nascimento:"; }
@@ -109,15 +105,16 @@
 <body>
 
 <div class="loading-overlay" id="loading">
-    <h2 style="color: #139c01;">Processando Inscrição...</h2>
-    <p>Aguarde, estamos salvando os dados... Boa Sorte!</p>
+    <h2 style="color: #02ff63;">Processando Inscrição...</h2>
+    <p>Aguarde, estamos salvando os dados....Boa Sorte!...</p>
 </div>
 
 <header>
-    <img class="testeira" src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/grupo.png">
-    <div id="contadorInscricao">
-        ⏳ Encerramento das Inscrições: <div id="tempoRestante"></div>
-    </div>
+  <img class="testeira" src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/grupo.png">
+<div id="contadorInscricao">
+⏳ Encerramento das Inscrições.....
+<div id="tempoRestante"></div>
+</div>
 </header>
 
 <main>
@@ -147,17 +144,17 @@
                     <td>Responsável p/ Inscrição *</td><td colspan="3"><input id="responsavel" required></td>
                 </tr>
                 <tr>
-                    <td>Identificação do PIX (devolução caução)*</td><td colspan="3"><input id="pix" required placeholder="Chave"></td>
+                    <td>Identificação do PIX (devolução caução somente CNPJ)*</td><td colspan="3"><input id="pix" required placeholder="Chave"></td>
                 </tr>
                 <tr>
-                    <td>Regulamento *</td>
+                    <td style="background: #fff5eb; font-weight: bold;">Regulamento *</td>
                     <td colspan="3">
                         <div class="regulamento-box">
                             <input type="checkbox" id="checkRegulamento" required disabled>
                             <label for="checkRegulamento">
                                 Li e concordo com o 
                                 <a href="https://drive.google.com/uc?export=download&id=1vALvRsEpG1ngPwXaUOfm8v4PDgwd4cUM" target="_blank" onclick="liberarCheck()">
-                                    Regulamento do 10º FETARC (Clique AQUI para prosseguir)
+                                    Regulamento do 10º FETARC(Click AQUI para prosseguir)
                                 </a>
                             </label>
                         </div>
@@ -167,23 +164,23 @@
         </div>
 
         <div class="section-title">Categorias Artísticas</div>
-        <p style="font-size: 13px; color: #666; margin-top: 10px; margin-left: 5px;">Abra a categoria, preencha as danças, anexe o comprovante e adicione os integrantes.</p>
+        <p style="font-size: 13px; color: #666; margin-left: 5px;">Abra a categoria, preencha as danças, anexe o comprovante e adicione os integrantes.</p>
         <div id="categoriasCont"></div>
 
         <div class="botoes-final">
             <button type="button" class="btn-submit" id="btnEnviar" onclick="enviar()">ENVIAR INSCRIÇÃO</button>
-            <a class="btn-voltar" href="http://10fetarc.nossoeventors.com.br">VOLTAR AO SITE</a>
+            <a class="btn-voltar" href="index.html">VOLTAR AO SITE</a>
         </div>
     </form>
 </main>
-
 <footer>
-    Sistema de Inscrição - NossoEventoRS © 2026 | dúvidas: contato@nossoevento.com.br
+  Sistema de Inscrição - NossoEventoRS © 2026 | dúvidas: contato@nossoeventors.com.br
 </footer>
 
 <script>
 const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzhe9sfjJRf6R7riwf5lVjxSKP6CsgWz6pq_ulDMBsUGVqINxxK6yfURj7vyXYN6-0Q/exec"; 
 
+// Data de encerramento
 const encerramento = new Date('2026-09-12T23:59:59-03:00').getTime();
 
 function atualizarContado() {
@@ -200,9 +197,9 @@ function atualizarContado() {
         if (main) {
             main.innerHTML = `
                 <div id="inscricoesEncerradas" style="display:block; text-align:center; padding:50px 0;">
-                    <h1 style="color:#d35400; font-size:32px;">INSCRIÇÕES ENCERRADAS</h1>
+                    <h1 style="color:#d35400; font-size:42px;">INSCRIÇÕES ENCERRADAS</h1>
                     <br>
-                    <span style="font-size:18px; color:#555;">
+                    <span style="font-size:20px; color:#555;">
                         25º Rodeio Nativista de Esteio<br>
                         <strong>CTG Chama Nativa</strong>
                     </span>
@@ -213,11 +210,11 @@ function atualizarContado() {
 
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
     const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((diff % (1000 * 60)) / 1000);
 
     if (displayTempo) {
-        displayTempo.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        displayTempo.innerHTML = `${dias}d ${horas}h ${minutes}m ${segundos}s`;
     }
 }
 
@@ -251,7 +248,7 @@ function toggleCategoria(nome) {
         btn.innerHTML = `+ Categoria ${nome}`;
     } else {
         abrirCategoria(nome);
-        content.style.maxHeight = "4000px"; 
+        content.style.maxHeight = "4000px";
         btn.innerHTML = `− Fechar Categoria ${nome}`;
     }
 }
@@ -287,6 +284,17 @@ function abrirCategoria(nome) {
                     <td>Musical *</td>
                     <td><select class="mus" required><option value="">Selecione</option><option>Sim</option><option>Não</option></select></td>
                 </tr>
+                <tr>
+                    <td>Melhor Coreografia para Avaliação *</td>
+                    <td colspan="3">
+                        <select class="melhor-coreografia" required>
+                            <option value="">Selecione qual coreografia será avaliada...</option>
+                            <option value="Entrada">Entrada</option>
+                            <option value="Saída">Saída</option>
+                            <option value="Não participar">Não participar desta avaliação</option>
+                        </select>
+                    </td>
+                </tr>
                 <tr><td>Comprovante (Imagem/PDF) *</td><td colspan="3"><input type="file" class="arq" required accept="image/*,application/pdf"></td></tr>
             </table>
             
@@ -296,7 +304,7 @@ function abrirCategoria(nome) {
             </div>
 
             <table class="tabela-integrantes">
-                <thead><tr><th>Nome Completo</th><th>Nascimento</th><th>Nº Cartão Tradicionalista</th><th style="width:40px">X</th></tr></thead>
+                <thead><tr><th>Nome Completo</th><th>Nascimento</th><th>Nº Cartão Tradicionalista </th><th style="width:40px">X</th></tr></thead>
                 <tbody id="body-${nome}"></tbody>
             </table>
             <button type="button" class="btn-add" onclick="addIn('${nome}')">+ Adicionar Integrante</button>
@@ -370,6 +378,7 @@ async function enviar() {
                 danca2: wrapper.querySelector(".d2").value,
                 danca3: wrapper.querySelector(".d3").value,
                 musical: wrapper.querySelector(".mus").value,
+                coreografiaAvaliada: wrapper.querySelector(".melhor-coreografia").value,
                 integrantes: integrantes,
                 comprovante: {
                     nome: arquivo.name,
