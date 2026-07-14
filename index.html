@@ -153,10 +153,7 @@
                             <input type="checkbox" id="checkRegulamento" required disabled>
                             <label for="checkRegulamento">
                                 Li e concordo com o 
-                                <a href="https://drive.google.com/uc?export=download&id=1glBgZwGMGJ_H0IWu51SYSyd17tnj-7qK" target="_blank" onclick="liberarCheck()">
-                                    
-                                   
-                                    
+                                <a href="https://drive.google.com/uc?export=download&id=181w8u0XK9-SESzcxck5Gigk7VxnRgQ_B" target="_blank" onclick="liberarCheck()">
                                     Regulamento do 10º FETARC(Click AQUI para prosseguir)
                                 </a>
                             </label>
@@ -288,17 +285,6 @@ function abrirCategoria(nome) {
                     <td>Musical *</td>
                     <td><select class="mus" required><option value="">Selecione</option><option>Sim</option><option>Não</option></select></td>
                 </tr>
-                <tr>
-                    <td>Melhor Coreografia para Avaliação *</td>
-                    <td colspan="3">
-                        <select class="melhor-coreografia" required>
-                            <option value="">Selecione qual coreografia será avaliada...</option>
-                            <option value="Entrada">Entrada</option>
-                            <option value="Saída">Saída</option>
-                            <option value="Não participar">Não participar desta avaliação</option>
-                        </select>
-                    </td>
-                </tr>
                 <tr><td>Comprovante (Imagem/PDF) *</td><td colspan="3"><input type="file" class="arq" required accept="image/*,application/pdf"></td></tr>
             </table>
             
@@ -382,7 +368,6 @@ async function enviar() {
                 danca2: wrapper.querySelector(".d2").value,
                 danca3: wrapper.querySelector(".d3").value,
                 musical: wrapper.querySelector(".mus").value,
-                coreografiaAvaliada: wrapper.querySelector(".melhor-coreografia").value,
                 integrantes: integrantes,
                 comprovante: {
                     nome: arquivo.name,
