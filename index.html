@@ -249,7 +249,8 @@ function toggleCategoria(nome) {
         btn.innerHTML = `+ Categoria ${nome}`;
     } else {
         abrirCategoria(nome);
-        content.style.maxHeight = "4000px";
+        // Mudança aqui: Usar "none" para o limite máximo não cortar o formulário gigante no mobile
+        content.style.maxHeight = "none"; 
         btn.innerHTML = `− Fechar Categoria ${nome}`;
     }
 }
@@ -354,11 +355,14 @@ async function enviar() {
             const arquivo = fileInput.files[0];
             const base64Data = await toBase64(arquivo);
 
-            const integrantes = Array.from(tbody.rows).map(r => ({
-                nome: r.cells[0].querySelector("input").value,
-                nascimento: r.cells[1].querySelector("input").value,
-                cartao: r.cells[2].querySelector("input").value
-            }));
+            const integrantes = Array.from(tbody.rows).map(r => {
+                const inputsDaLinha = r.querySelectorAll("input");
+                return {
+                    nome: inputsDaLinha[0] ? inputsDaLinha[0].value : "",
+                    nascimento: inputsDaLinha[1] ? inputsDaLinha[1].value : "",
+                    cartao: inputsDaLinha[2] ? inputsDaLinha[2].value : ""
+                };
+            });
 
             totalInscritosGeral += integrantes.length;
 
